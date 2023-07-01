@@ -27,7 +27,8 @@
   "scripts": {
     "build": "tsup Baserow.ts --format cjs,esm --dts --out-dir .",
     "release": "npm run build && changeset publish",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "changeset": "changeset"
   },
   "author": {
     "name": "Tomáš Kazatel",

@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- 6b51597: # Baserow Client v0.0.1
+- 6b51597: Baserow Client v0.0.1
 
   ## Features
 
