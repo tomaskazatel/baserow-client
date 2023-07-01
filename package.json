@@ -27,6 +27,7 @@
   "scripts": {
     "build": "tsup Baserow.ts --format cjs,esm --dts --out-dir .",
     "release": "pnpm run build && changeset publish",
+    "prepare": "husky install",
     "lint": "tsc"
   },
   "author": {
@@ -43,6 +44,14 @@
   "homepage": "https://github.com/tomaskazatel/baserow-client#readme",
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
+    "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "@typescript-eslint/parser": "^5.60.1",
+    "eslint": "^8.44.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-import-resolver-typescript": "^3.5.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
     "tsup": "^7.1.0",
     "typescript": "^5.1.6"
   }
