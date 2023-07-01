@@ -23,7 +23,10 @@ import Baserow from 'baserow-client';
 To use the Baserow SDK Client, you need to create a `Baserow` instance by providing your API key. Optionally, you can specify whether to show user field names. Here's an example:
 
 ```typescript
-const baserow = new Baserow({ apiKey: 'YOUR_API_KEY', showUserFieldNames: true });
+const baserow = new Baserow({
+  apiKey: 'YOUR_API_KEY',
+  showUserFieldNames: true,
+});
 ```
 
 ### Accessing a Baserow table
@@ -40,26 +43,27 @@ To retrieve a list of records from the Baserow table, use the `list` method on t
 
 ```typescript
 interface Item {
-    Name: string;
-    Age: number;
-    Email: string;
+  Name: string;
+  Age: number;
+  Email: string;
 }
 
 const params: BaserowListParams<Item> = {
-    page: 1,
-    size: 20,
-    search: 'example',
-    orderBy: 'Name',
-    orderDir: 'ASC',
+  page: 1,
+  size: 20,
+  search: 'example',
+  orderBy: 'Name',
+  orderDir: 'ASC',
 };
 
-table.list(params)
-    .then((records) => {
-        // Process the list of records
-    })
-    .catch((error) => {
-        // Handle the error
-    });
+table
+  .list(params)
+  .then((records) => {
+    // Process the list of records
+  })
+  .catch((error) => {
+    // Handle the error
+  });
 ```
 
 ### Retrieving a record
@@ -67,7 +71,8 @@ table.list(params)
 To retrieve a single record from the Baserow table by its ID, use the `get` method on the `BaserowTable` instance. Pass the record ID as an argument. The method returns a promise that resolves to a `BaserowRecord` instance. Here's an example:
 
 ```typescript
-table.get(recordID)
+table
+  .get(recordID)
   .then((record) => {
     // Process the record
   })
@@ -82,9 +87,9 @@ To create a new record in the Baserow table, use the `create` method on the `Bas
 
 ```typescript
 interface Item {
-    Name: string;
-    Age: number;
-    Email: string;
+  Name: string;
+  Age: number;
+  Email: string;
 }
 
 const fields: Item = {
@@ -93,7 +98,8 @@ const fields: Item = {
   Email: 'john@example.com',
 };
 
-table.create(fields)
+table
+  .create(fields)
   .then((record) => {
     // Process the created record
   })
@@ -106,13 +112,13 @@ table.create(fields)
 
 To edit an existing record in the Baserow table, use the `update` method on the `BaserowTable` instance. Pass the record ID and a
 
- fields object that contains the updated values for the record. The method returns a promise that resolves to a `BaserowRecord` instance representing the updated record. Here's an example:
+fields object that contains the updated values for the record. The method returns a promise that resolves to a `BaserowRecord` instance representing the updated record. Here's an example:
 
 ```typescript
 interface Item {
-    Name: string;
-    Age: number;
-    Email: string;
+  Name: string;
+  Age: number;
+  Email: string;
 }
 
 const fields: Item = {
@@ -121,7 +127,8 @@ const fields: Item = {
   Email: 'updated@example.com',
 };
 
-table.update(recordID, fields)
+table
+  .update(recordID, fields)
   .then((record) => {
     // Process the updated record
   })
@@ -135,7 +142,8 @@ table.update(recordID, fields)
 To move a record within the Baserow table, use the `move` method on the `BaserowTable` instance. Pass the record ID and the ID of the record before which you want to move the record. The method returns a promise that resolves to a `BaserowRecord` instance representing the moved record. Here's an example:
 
 ```typescript
-table.move(recordID, beforeRecordID)
+table
+  .move(recordID, beforeRecordID)
   .then((record) => {
     // Process the moved record
   })
@@ -149,7 +157,8 @@ table.move(recordID, beforeRecordID)
 To delete a record from the Baserow table, use the `delete` method on the `BaserowTable` instance. Pass the record ID as an argument. The method returns a promise that resolves to a `BaserowRecord` instance representing the deleted record. Here's an example:
 
 ```typescript
-table.delete(recordID)
+table
+  .delete(recordID)
   .then((record) => {
     // Process the deleted record
   })

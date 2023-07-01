@@ -1,4 +1,4 @@
 {
-  "*.{ts,json,md}": ["eslint --fix", "prettier --write"],
-  "*.{ts}": ["tsc -p tsconfig.json --noEmit"]
+  "*.ts": ["eslint --fix", "prettier --write", "tsc --noEmit"],
+  "*.{ts,json,md}": ["prettier --write"]
 }

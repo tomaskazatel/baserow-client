@@ -64,7 +64,10 @@ export class BaserowTable<Item> {
     const params = new URLSearchParams();
     params.append('page', page.toString());
     params.append('size', size.toString());
-    params.append('user_field_names', this.baserow.showUserFieldNames.toString());
+    params.append(
+      'user_field_names',
+      this.baserow.showUserFieldNames.toString()
+    );
     params.append('search', search);
     if (typeof orderBy !== 'symbol') {
       params.append('order_by', `${orderDir === 'ASC' ? '+' : '-'}${orderBy}`);
@@ -72,57 +75,99 @@ export class BaserowTable<Item> {
     return params.toString();
   }
 
-  public async list(params: BaserowListParams<Item> = {}): Promise<BaserowRecord<Item>[]> {
+  public async list(
+    params: BaserowListParams<Item> = {}
+  ): Promise<BaserowRecord<Item>[]> {
     const response: Response = await fetch(
       `${this.apiUrl}${this.tableID}/?${this.getQueryParams(params)}`,
-      { method: 'GET', headers: { Authorization: `Token ${this.baserow.apiKey}` } }
+      {
+        method: 'GET',
+        headers: { Authorization: `Token ${this.baserow.apiKey}` },
+      }
     );
-    const data = await response.json() as BaserowListResponse<Item>;
+    const data = (await response.json()) as BaserowListResponse<Item>;
     return data.results.map((item) => new BaserowRecord<Item>(item));
   }
 
   public async get(id: number): Promise<BaserowRecord<Item>> {
     const response: Response = await fetch(
       `${this.apiUrl}${this.tableID}/${id}/?user_field_names=${this.baserow.showUserFieldNames}`,
-      { method: 'GET', headers: { Authorization: `Token ${this.baserow.apiKey}` } }
+      {
+        method: 'GET',
+        headers: { Authorization: `Token ${this.baserow.apiKey}` },
+      }
     );
-    const data = await response.json() as BaserowRecordType<Item>;
+    const data = (await response.json()) as BaserowRecordType<Item>;
     return new BaserowRecord<Item>(data);
   }
 
-  public async create(fields: Record<keyof Item, string | number | Array<number | string> | undefined | boolean>): Promise<BaserowRecord<Item>>{
+  public async create(
+    fields: Record<
+      keyof Item,
+      string | number | Array<number | string> | undefined | boolean
+    >
+  ): Promise<BaserowRecord<Item>> {
     const response: Response = await fetch(
       `${this.apiUrl}${this.tableID}/?user_field_names=${this.baserow.showUserFieldNames}`,
-      { method: 'POST', headers: { Authorization: `Token ${this.baserow.apiKey}`, 'Content-Type': 'application/json' }, body: JSON.stringify(fields) }
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Token ${this.baserow.apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(fields),
+      }
     );
-    const data = await response.json() as BaserowRecordType<Item>;
+    const data = (await response.json()) as BaserowRecordType<Item>;
     return new BaserowRecord<Item>(data);
   }
 
-  public async update(id: number, fields: Record<keyof Item, string | number | Array<number | string> | undefined | boolean>): Promise<BaserowRecord<Item>>{
+  public async update(
+    id: number,
+    fields: Record<
+      keyof Item,
+      string | number | Array<number | string> | undefined | boolean
+    >
+  ): Promise<BaserowRecord<Item>> {
     const response: Response = await fetch(
       `${this.apiUrl}${this.tableID}/${id}/?user_field_names=${this.baserow.showUserFieldNames}`,
-      { method: 'PATCH', headers: { Authorization: `Token ${this.baserow.apiKey}`, 'Content-Type': 'application/json' }, body: JSON.stringify(fields) }
+      {
+        method: 'PATCH',
+        headers: {
+          Authorization: `Token ${this.baserow.apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(fields),
+      }
     );
-    const data = await response.json() as BaserowRecordType<Item>;
+    const data = (await response.json()) as BaserowRecordType<Item>;
     return new BaserowRecord<Item>(data);
   }
 
-  public async move(id: number, beforeId: number): Promise<BaserowRecord<Item>>{
+  public async move(
+    id: number,
+    beforeId: number
+  ): Promise<BaserowRecord<Item>> {
     const response: Response = await fetch(
       `${this.apiUrl}${this.tableID}/${id}/move/?user_field_names=${this.baserow.showUserFieldNames}&before_id=${beforeId}`,
-      { method: 'PATCH', headers: { Authorization: `Token ${this.baserow.apiKey}` } }
+      {
+        method: 'PATCH',
+        headers: { Authorization: `Token ${this.baserow.apiKey}` },
+      }
     );
-    const data = await response.json() as BaserowRecordType<Item>;
+    const data = (await response.json()) as BaserowRecordType<Item>;
     return new BaserowRecord<Item>(data);
   }
 
-  public async delete(id: number): Promise<BaserowRecord<Item>>{
+  public async delete(id: number): Promise<BaserowRecord<Item>> {
     const response: Response = await fetch(
       `${this.apiUrl}${this.tableID}/${id}`,
-      { method: 'DELETE', headers: { Authorization: `Token ${this.baserow.apiKey}` } }
+      {
+        method: 'DELETE',
+        headers: { Authorization: `Token ${this.baserow.apiKey}` },
+      }
     );
-    const data = await response.json() as BaserowRecordType<Item>;
+    const data = (await response.json()) as BaserowRecordType<Item>;
     return new BaserowRecord<Item>(data);
   }
 }
@@ -132,7 +177,13 @@ class Baserow {
 
   private readonly SHOW_USER_FIELD_NAMES: boolean;
 
-  constructor({ apiKey, showUserFieldNames = true }: { apiKey?: string; showUserFieldNames?: boolean; }) {
+  constructor({
+    apiKey,
+    showUserFieldNames = true,
+  }: {
+    apiKey?: string;
+    showUserFieldNames?: boolean;
+  }) {
     if (!apiKey) {
       throw new Error('Cant create Baserow instance without apiKey');
     }
