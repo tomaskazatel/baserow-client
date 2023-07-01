@@ -1,0 +1,49 @@
+{
+  "name": "baserow-client",
+  "version": "0.0.0",
+  "description": "This is basic Node.js Baserow client",
+  "keywords": [
+    "api",
+    "baserow",
+    "client",
+    "sdk"
+  ],
+  "main": "Baserow.js",
+  "module": "Baserow.mjs",
+  "types": "Baserow.d.ts",
+  "exports": {
+    ".": {
+      "import": "./Baserow.mjs",
+      "require": "./Baserow.js"
+    },
+    "./Baserow.mjs": "./Baserow.mjs",
+    "./big.js": "./Baserow.js",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomaskazatel/baserow-client.git"
+  },
+  "scripts": {
+    "build": "tsup Baserow.ts --format cjs,esm --dts --out-dir .",
+    "release": "pnpm run build && changeset publish",
+    "lint": "tsc"
+  },
+  "author": {
+    "name": "Tomáš Kazatel",
+    "email": "tomas@pujcsidron.cz"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "license": "MIT License",
+  "bugs": {
+    "url": "https://github.com/tomaskazatel/baserow-client/issues"
+  },
+  "homepage": "https://github.com/tomaskazatel/baserow-client#readme",
+  "devDependencies": {
+    "@changesets/cli": "^2.26.2",
+    "tsup": "^7.1.0",
+    "typescript": "^5.1.6"
+  }
+}

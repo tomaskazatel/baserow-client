@@ -1,0 +1,15 @@
+# dependencies
+node_modules
+
+# compiled output
+/Baserow.d.mts
+/Baserow.d.ts
+/Baserow.js
+/Baserow.mjs
+
+# IDEs and editors
+.idea
+.vscode
+
+# System Files
+.DS_Store
