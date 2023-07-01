@@ -26,7 +26,7 @@
   },
   "scripts": {
     "build": "tsup Baserow.ts --format cjs,esm --dts --out-dir .",
-    "release": "pnpm run build && changeset publish",
+    "release": "npm run build && changeset publish",
     "prepare": "husky install",
     "lint": "tsc"
   },
