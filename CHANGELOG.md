@@ -1,5 +1,15 @@
 # baserow-client
 
+## 0.0.2
+
+### Patch Changes
+
+- 13ed273: # Improvements
+
+  - Add pre-commit hook
+  - Add eslint, prettier and tsc lint rules
+  - Fix repo codestyle
+
 ## 0.0.1
 
 ### Patch Changes
