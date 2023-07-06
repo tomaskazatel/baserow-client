@@ -69,9 +69,10 @@ export class BaserowTable<Item> {
       this.baserow.showUserFieldNames.toString()
     );
     params.append('search', search);
-    if (typeof orderBy !== 'symbol') {
-      params.append('order_by', `${orderDir === 'ASC' ? '+' : '-'}${orderBy}`);
-    }
+    params.append(
+      'order_by',
+      `${orderDir === 'ASC' ? '+' : '-'}${String(orderBy)}`
+    );
     return params.toString();
   }
 
@@ -103,7 +104,7 @@ export class BaserowTable<Item> {
 
   public async create(
     fields: Record<
-      keyof Item,
+      keyof Omit<Item, 'id'>,
       string | number | Array<number | string> | undefined | boolean
     >
   ): Promise<BaserowRecord<Item>> {
@@ -124,9 +125,11 @@ export class BaserowTable<Item> {
 
   public async update(
     id: number,
-    fields: Record<
-      keyof Item,
-      string | number | Array<number | string> | undefined | boolean
+    fields: Partial<
+      Record<
+        keyof Item,
+        string | number | Array<number | string> | undefined | boolean
+      >
     >
   ): Promise<BaserowRecord<Item>> {
     const response: Response = await fetch(

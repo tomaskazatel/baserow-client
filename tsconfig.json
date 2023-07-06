@@ -12,6 +12,7 @@
     "target": "es6",
     "module": "esnext",
     "noUncheckedIndexedAccess": true,
-    "noEmit": true
+    "moduleResolution": "node",
+    "types": ["node", "jest"]
   }
 }

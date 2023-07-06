@@ -1,4 +1,8 @@
 {
-  "*.ts": ["eslint --fix", "prettier --write", "tsc --noEmit"],
+  "*.ts": [
+    "eslint --fix",
+    "prettier --write",
+    "tsc --noEmit --target es6 --moduleResolution node"
+  ],
   "*.{ts,json,md}": ["prettier --write"]
 }
