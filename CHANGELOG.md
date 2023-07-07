@@ -1,5 +1,19 @@
 # baserow-client
 
+## 0.1.0
+
+### Minor Changes
+
+- 03e09ad: Baserow Client v0.1.0
+
+  ## Features
+
+  - added support for search params in list method
+
+  ## Improvements
+
+  - make smaller package by .npmignore
+
 ## 0.0.3
 
 ### Patch Changes
