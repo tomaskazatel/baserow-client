@@ -11,15 +11,6 @@
   "main": "Baserow.js",
   "module": "Baserow.mjs",
   "types": "Baserow.d.ts",
-  "exports": {
-    ".": {
-      "import": "./Baserow.mjs",
-      "require": "./Baserow.js"
-    },
-    "./Baserow.mjs": "./Baserow.mjs",
-    "./big.js": "./Baserow.js",
-    "./package.json": "./package.json"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tomaskazatel/baserow-client.git"

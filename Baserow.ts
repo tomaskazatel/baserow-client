@@ -68,11 +68,15 @@ export class BaserowTable<Item> {
       'user_field_names',
       this.baserow.showUserFieldNames.toString()
     );
-    params.append('search', search);
-    params.append(
-      'order_by',
-      `${orderDir === 'ASC' ? '+' : '-'}${String(orderBy)}`
-    );
+    if (search || search !== '') {
+      params.append('search', search);
+    }
+    if (orderBy !== 'id') {
+      params.append(
+        'order_by',
+        `${orderDir === 'ASC' ? '+' : '-'}${String(orderBy)}`
+      );
+    }
     return params.toString();
   }
 
