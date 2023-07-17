@@ -48,10 +48,12 @@ export class BaserowTable<Item> {
 
   private readonly tableID: number;
 
-  private apiUrl = 'https://api.baserow.io/api/database/rows/table/';
+  private readonly apiUrl: string;
+
   constructor(baserow: Baserow, { tableID }: { tableID: number }) {
     this.baserow = baserow;
     this.tableID = tableID;
+    this.apiUrl = `${baserow.apiUrl}/api/database/rows/table/`;
   }
 
   private getQueryParams({
@@ -182,24 +184,33 @@ export class BaserowTable<Item> {
 class Baserow {
   private readonly API_KEY: string;
 
+  private readonly API_URL: string;
+
   private readonly SHOW_USER_FIELD_NAMES: boolean;
 
   constructor({
     apiKey,
+    apiKey = 'https://api.baserow.io',
     showUserFieldNames = true,
   }: {
     apiKey?: string;
+    apiUrl?: string;
     showUserFieldNames?: boolean;
   }) {
     if (!apiKey) {
       throw new Error('Cant create Baserow instance without apiKey');
     }
     this.API_KEY = apiKey;
+    this.API_URL = apiUrl;
     this.SHOW_USER_FIELD_NAMES = showUserFieldNames;
   }
 
   get apiKey(): string {
     return this.API_KEY;
+  }
+
+  get apiUrl(): string {
+    return this.API_URL;
   }
 
   get showUserFieldNames(): boolean {
