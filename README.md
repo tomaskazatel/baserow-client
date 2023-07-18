@@ -66,6 +66,26 @@ table
   });
 ```
 
+**Using filters**
+Read more about Baserow Filters in API docs.  
+Filter `type` [AND | OR] is optional. Used only when you have more than one fields. If you skip it - "AND" logic will be used.
+
+```typescript
+const params: BaserowListParams<Item> = {
+  page: 1,
+  size: 20,
+  search: 'example',
+  orderBy: 'Name',
+  orderDir: 'ASC',
+  filter: {
+    type: 'AND',
+    _FIELD_NUMBER__equal: 'FIELD_VALUE',
+    _ANOTHER_FIELD_NUMBER__equal: 'FIELD_VALUE',
+  },
+};
+```
+
+
 ### Retrieving a record
 
 To retrieve a single record from the Baserow table by its ID, use the `get` method on the `BaserowTable` instance. Pass the record ID as an argument. The method returns a promise that resolves to a `BaserowRecord` instance. Here's an example:

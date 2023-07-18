@@ -60,6 +60,7 @@ export class BaserowTable<Item> {
     search = '',
     orderBy = 'id',
     orderDir = 'ASC',
+    filter = {},
   }: BaserowCreateParams): string {
     const params = new URLSearchParams();
     params.append('page', page.toString());
@@ -76,6 +77,9 @@ export class BaserowTable<Item> {
         'order_by',
         `${orderDir === 'ASC' ? '+' : '-'}${String(orderBy)}`
       );
+    }
+    for (const filterName of Object.keys(filter)) {
+      params.append(`filter_${filterName}`, filter[filterName].toString());
     }
     return params.toString();
   }
