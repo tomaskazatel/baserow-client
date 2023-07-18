@@ -190,7 +190,7 @@ class Baserow {
 
   constructor({
     apiKey,
-    apiKey = 'https://api.baserow.io',
+    apiUrl = 'https://api.baserow.io',
     showUserFieldNames = true,
   }: {
     apiKey?: string;
