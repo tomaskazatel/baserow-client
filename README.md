@@ -20,11 +20,13 @@ import Baserow from 'baserow-client';
 
 ### Creating a Baserow instance
 
-To use the Baserow SDK Client, you need to create a `Baserow` instance by providing your API key. Optionally, you can specify whether to show user field names. Here's an example:
+To use the Baserow SDK Client, you need to create a `Baserow` instance by providing your API key. Optionally, you can specify whether to show user field names or custom url for self host instances.  
+Here's an example:
 
 ```typescript
 const baserow = new Baserow({
   apiKey: 'YOUR_API_KEY',
+  apiUrl: 'https://SELF_HOSTED_INSTANCE_DOMAIN',
   showUserFieldNames: true,
 });
 ```
