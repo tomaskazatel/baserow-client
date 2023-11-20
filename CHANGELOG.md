@@ -1,5 +1,11 @@
 # baserow-client
 
+## 0.3.0
+
+### Minor Changes
+
+- Changes relates to custom urls for self hosted instances
+
 ## 0.1.0
 
 ### Minor Changes
